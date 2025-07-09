@@ -157,6 +157,7 @@ const PropertyDetailPage = () => {
                 <h3 className="font-heading text-xl font-semibold mb-4">Contact Agent</h3>
                 <div className="flex items-center space-x-4 mb-6">
                   <Avatar className="h-14 w-14">
+
                     <AvatarImage src={property.createdBy.image} alt={property.createdBy.name} />
                     <AvatarFallback>{property.createdBy.name[0]}</AvatarFallback>
                   </Avatar>
@@ -167,6 +168,7 @@ const PropertyDetailPage = () => {
                       <span>{property.createdBy.email}</span>
                     </div>
                     {property.createdBy.phone && (
+
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Phone size={14} className="mr-1" />
                         <span>{property.createdBy.phone}</span>

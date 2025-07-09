@@ -34,7 +34,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
-      console.log(data.user)
       if (res.ok) setUser(data.user);
     } catch (err) {
       console.error("Token validation failed");
