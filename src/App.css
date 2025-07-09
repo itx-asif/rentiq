@@ -1,0 +1,8 @@
+@font-face {
+  font-family: belix;
+  src: url(./assets/font/Belix-gwG8Y.ttf);
+}
+
+.logo {
+  font-family: belix;
+}

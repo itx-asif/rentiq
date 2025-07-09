@@ -1,0 +1,99 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+}
+/* theme.css or globals.css */
+
+:root {
+  --background: 240 100% 99%;
+  --foreground: 169.9 2.5% 10%;
+  --card: 169.9 24.5% 100%;
+  --card-foreground: 169.9 2.5% 15%;
+  --popover: 169.9 49% 100%;
+  --popover-foreground: 169.9 97.5% 10%;
+  --primary: 169.9 100% 17.5%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 169.9 19.8% 90%;
+  --secondary-foreground: 0 0% 0%;
+  --muted: 207.9 19.8% 95%;
+  --muted-foreground: 169.9 2.5% 40%;
+  --accent: 207.9 19.8% 90%;
+  --accent-foreground: 169.9 2.5% 15%;
+  --destructive: 0 74.5% 50%;
+  --destructive-foreground: 169.9 2.5% 100%;
+  --border: 169.9 24.9% 82%;
+  --input: 169.9 24.9% 50%;
+  --ring: 169.9 88.7% 45.3%;
+  --radius: 0.7rem;
+  --sidebar-background: 240 100% 99%;
+  --sidebar-foreground: 170, 3%, 9%;
+  --sidebar-primary: 170, 100%, 16%;
+  --sidebar-primary-foreground: 0, 0%, 100%;
+  --sidebar-accent: 208, 20%, 86%;
+  --sidebar-accent-foreground: 0 0% 0%;
+  --sidebar-border: 170, 25%, 78%;
+  --sidebar-ring: 160, 98%, 45%;
+  --sidebar: 0 0% 98%;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.dark {
+  --sidebar: hsl(240 5.9% 10%);
+  --sidebar-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-primary: hsl(224.3 76.3% 48%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(240 3.7% 15.9%);
+  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-border: hsl(240 3.7% 15.9%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+}
