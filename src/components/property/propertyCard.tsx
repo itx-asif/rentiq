@@ -12,10 +12,10 @@ interface PropertyCardProps {
 }
 const PropertyCard = ({ property }: PropertyCardProps) => {
     return (
-        <Card className="grow cursor-pointer shadow-primary/60 shadow-md hover:shadow-lg">
+        <Card className="grow cursor-pointer h-full shadow-primary/60 shadow-md hover:shadow-lg">
             <CardHeader className="relative">
                 <div className="overflow-hidden rounded-md">
-                    <img src={property.images[0]} alt="" className="object-cover w-full h-auto hover:scale-105 transition duration-150 ease-in-out" />
+                    <img src={property.images[0]} alt="" className="object-cover w-full h-40 hover:scale-105 transition duration-150 ease-in-out" />
                     <div className="absolute left-10 bg-background px-4 py-2 transition-all text-xs top-4 rounded-2xl capitalize">
                         {property.type}
                     </div>

@@ -124,7 +124,7 @@ const PropertyDetailPage = () => {
 
         <div className="lg:flex gap-8">
           {/* Image + Contact Section */}
-          <div className="mb-8 ">
+          <div className="mb-8 lg:sticky top-0 h-full lg:max-w-1/3">
             <Card className="overflow-hidden relative aspect-video rounded-xl mb-4">
               <img
                 src={property.images[activeImageIndex]}
@@ -134,12 +134,14 @@ const PropertyDetailPage = () => {
 
             </Card>
 
-            <div className="flex gap-2 pb-10 relative overflow-x-auto my-4 scrollbar-hide">
+            <div className="flex gap-2 snap-x relative overflow-x-auto my-4 " style={{
+              scrollbarWidth: 'none', // Firefox
+            }}>
               {property.images.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveImageIndex(index)}
-                  className={`shrink-0 aspect-video w-24 sm:w-32 rounded-md overflow-hidden border-2 ${activeImageIndex === index ? 'border-primary' : 'border-gray-300 dark:border-gray-700'
+                  className={`shrink-0 snap-center aspect-video w-24 sm:w-32 rounded-md overflow-hidden border-2 ${activeImageIndex === index ? 'border-primary' : 'border-gray-300 dark:border-gray-700'
                     }`}
                 >
                   <img
@@ -149,11 +151,6 @@ const PropertyDetailPage = () => {
                   />
                 </button>
               ))}
-              <div className="absolute bottom-0 left-[50%]">
-                <Badge variant="outline" className="bg-black/60 -ml-[50%] text-white border-0">
-                  {activeImageIndex + 1} / {property.images.length}
-                </Badge>
-              </div>
             </div>
 
             <Card ref={contactSectionRef} className="my-8 hover:shadow-md">

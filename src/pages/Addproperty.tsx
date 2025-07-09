@@ -178,6 +178,7 @@ const AddProperty = () => {
                             value={form.description}
                             onChange={handleChange}
                             placeholder="Write description"
+                            maxLength={200}
                             required
                         />
                         <Input

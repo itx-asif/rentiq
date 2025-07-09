@@ -7,7 +7,7 @@ type Props = {
 
 const HorizentalPropertyCard = ({ property }: Props) => {
     return (
-        <Card className="flex flex-col md:flex-row md:w-full w-fit mx-auto gap-4 p-4 shadow-sm border bg-white rounded-xl">
+        <Card className="flex flex-col md:flex-row md:w-full my-4 w-fit mx-auto gap-4 p-4 shadow-sm border bg-white rounded-xl">
             {/* Image Section */}
             <div className="md:w-1/3">
                 <img
