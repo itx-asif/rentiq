@@ -14,7 +14,6 @@ import {
 import {
     Home,
     House,
-    Calculator,
     MessageCircle,
     LayoutDashboard,
     Building2,

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "react-router-dom";
 import { getUserProperties } from "@/lib/api/propertyController";
 import { DeletePropeter } from "@/lib/api/DeletePropety";

@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
 import PCard from "./pcard";
-import { Link } from "react-router-dom";
 import type { Property } from "@/types/Property";
 import NotFound from "@/pages/NotFound";
 

@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/context/AuthContext";
 import {
     getAllUsers,
     deleteUser,
-    resetUserPassword,
     updateUserRole,
 } from "@/lib/api/userController";
 import type { User } from "@/types/User";
@@ -104,7 +102,7 @@ const AllUsers = () => {
             await updateUserRole(id, newRole, token);
             setUsers((prev) =>
                 prev.map((user): User =>
-                    user._id === id ? { ...user, role: newRole } : user
+                    user._id === id ? { ...user, role: newRole as 'admin' | 'user' } : user
                 )
             );
             toast.success("Role updated");

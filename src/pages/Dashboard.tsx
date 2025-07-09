@@ -6,7 +6,6 @@ import RecentProperties from "@/components/Dashboard/RecentProperties";
 import { getUserProperties } from "@/lib/api/propertyController";
 import { DeletePropeter } from "@/lib/api/DeletePropety";
 import type { Property } from "@/types/Property";
-import DashboardSkeleton from "@/components/Dashboard/DashBoardSkeleton";
 import ConfirmDialog from "@/components/ui/Confirm-Dialog";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

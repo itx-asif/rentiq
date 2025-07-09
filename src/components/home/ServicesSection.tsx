@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {
   Home,
   MessageSquare,
-  Calculator,
   BrainCircuit,
   ArrowRight,
   Search

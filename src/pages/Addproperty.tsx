@@ -42,7 +42,7 @@ interface FormState {
 const AddProperty = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
-
+    const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
     const [form, setForm] = useState<FormState>({
         title: '',
         description: '',
@@ -88,11 +88,9 @@ const AddProperty = () => {
         if (!files || files.length === 0) return;
 
         const newFiles = Array.from(files);
-        setForm((prev) => ({
-            ...prev,
-            images: [...prev.images, ...newFiles],
-        }));
+        setUploadedFiles((prev) => [...prev, ...newFiles]);
     };
+
 
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -106,30 +104,25 @@ const AddProperty = () => {
                 return;
             }
 
-            if (form.images.length === 0) {
+            if (uploadedFiles.length === 0) {
                 toast.error("Please select at least one image.");
                 return;
             }
 
             const uploadedUrls: string[] = [];
-            for (const file of form.images) {
+            for (const file of uploadedFiles) {
                 const url = await uploadImageToCloudinary(file);
                 if (url) uploadedUrls.push(url);
             }
 
             const payload = {
-                title: form.title,
-                description: form.description,
+                ...form,
                 price: Number(form.price),
-                status: form.status,
-                type: form.type,
-                location: form.location,
                 features: {
+                    ...form.features,
                     bedrooms: Number(form.features.bedrooms),
                     bathrooms: Number(form.features.bathrooms),
                     area: Number(form.features.area),
-                    furnished: form.features.furnished,
-                    parking: form.features.parking,
                 },
                 images: uploadedUrls,
                 createdBy: user._id,
@@ -161,6 +154,7 @@ const AddProperty = () => {
             setLoading(false);
         }
     };
+
 
 
 
@@ -309,9 +303,8 @@ const AddProperty = () => {
                         />
                         {/* Display uploaded images with remove buttons */}
                         <div className="mt-4 flex flex-wrap gap-4">
-                            {form.images.map((image, index) => {
-                                const isFile = image instanceof File;
-                                const previewUrl = isFile ? URL.createObjectURL(image) : image as string;
+                            {uploadedFiles.map((file, index) => {
+                                const previewUrl = URL.createObjectURL(file);
 
                                 return (
                                     <div key={index} className="relative w-24 h-24 border rounded overflow-hidden">
@@ -323,10 +316,7 @@ const AddProperty = () => {
                                         <button
                                             type="button"
                                             onClick={() => {
-                                                setForm((prev) => ({
-                                                    ...prev,
-                                                    images: prev.images.filter((_, i) => i !== index),
-                                                }));
+                                                setUploadedFiles((prev) => prev.filter((_, i) => i !== index));
                                             }}
                                             className="absolute top-1 right-1 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-700"
                                             aria-label="Remove image"
@@ -337,6 +327,7 @@ const AddProperty = () => {
                                 );
                             })}
                         </div>
+
 
 
                     </CardContent>

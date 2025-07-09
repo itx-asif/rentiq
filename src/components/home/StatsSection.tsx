@@ -1,4 +1,3 @@
-import React from "react";
 import { cn } from "@/lib/utils"; // Optional utility if using `shadcn`
 
 type StatItem = {
