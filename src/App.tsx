@@ -35,7 +35,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path='/properties' element={<Properties />} />
         <Route path='/chat' element={<Chat />} />
-        <Route path='/forgot-password' element={<RequestReset />} />
+        <Route path='/forget-password' element={<RequestReset />} />
         <Route path='/reset-password/:token' element={<Reset />} />
         <Route path='/recommendations' element={<PropertyRecommendation />} />
         <Route path='/property/:id' element={<PropertyDetailPage />} />
