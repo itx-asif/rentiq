@@ -94,7 +94,7 @@ const PropertyDetailPage = () => {
   return (
     <div className="bg-background text-foreground py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+        <div className="flex sm:flex-row justify-between items-start sm:items-center mb-6">
           <Link
             to="/properties"
             className="inline-flex items-center text-muted-foreground hover:text-primary transition"

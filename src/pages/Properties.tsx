@@ -41,7 +41,9 @@ const Properties = () => {
     const [propertyList, setPropertyList] = useState<Property[]>([]);
     const [filteredProperties, setFilteredProperties] = useState<Property[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [isDialogOpen, setIsDialogOpen] = useState(true);
     const itemsPerPage = 10;
+    const [isMobile, setIsMobile] = useState(false);
 
     const location = useLocation();
     const stateFilters = location.state?.filters;
@@ -53,6 +55,28 @@ const Properties = () => {
         location: "",
         type: "",
     });
+    useEffect(() => {
+        if (!isMobile) {
+            setIsDialogOpen(false);
+        }
+    }, [isMobile]);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            const isMobileView = window.innerWidth < 768;
+            setIsMobile(isMobileView);
+
+            if (!isMobileView) {
+                console.log(isDialogOpen)
+                setIsDialogOpen(false);
+            }
+        };
+
+        checkScreenSize(); // run on mount
+
+        window.addEventListener("resize", checkScreenSize);
+        return () => window.removeEventListener("resize", checkScreenSize);
+    }, []);
 
     useEffect(() => {
         if (stateFilters) {
@@ -94,23 +118,26 @@ const Properties = () => {
         setCurrentPage(1); // Reset to page 1 on filter change
     }, [filters, propertyList]);
 
-    const applyFilters = () => { };
+    const applyFilters = () => {
+        if (!isMobile) {
+            setIsDialogOpen(false); // smoother close
+        }
+    };
 
     const totalPages = Math.ceil(filteredProperties.length / itemsPerPage);
     const paginatedProperties = filteredProperties.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
-
     return (
         <>
             {/* 🔘 Mobile Filter Button */}
             <div className="md:hidden flex justify-end px-4 mt-4">
-                <Dialog>
+                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                     <DialogTrigger asChild>
                         <Button variant="outline">Filter</Button>
                     </DialogTrigger>
-                    <DialogContent className="p-4 max-h-[90vh] overflow-y-auto">
+                    <DialogContent className="p-4 md:hidden max-h-[90vh] overflow-y-auto">
                         <DialogHeader>
                             <DialogTitle>Filter Properties</DialogTitle>
                         </DialogHeader>
@@ -130,6 +157,7 @@ const Properties = () => {
                                     </SelectContent>
                                 </Select>
                             </div>
+
                             <div>
                                 <Label>Min Price</Label>
                                 <Input
@@ -139,6 +167,7 @@ const Properties = () => {
                                     onChange={(e) => handleFilterChange("minPrice", e.target.value)}
                                 />
                             </div>
+
                             <div>
                                 <Label>Max Price</Label>
                                 <Input
@@ -148,6 +177,7 @@ const Properties = () => {
                                     onChange={(e) => handleFilterChange("maxPrice", e.target.value)}
                                 />
                             </div>
+
                             <div className="col-span-2">
                                 <Label>Location</Label>
                                 <Input
@@ -156,6 +186,7 @@ const Properties = () => {
                                     onChange={(e) => handleFilterChange("location", e.target.value)}
                                 />
                             </div>
+
                             <div className="col-span-2">
                                 <Label>Type</Label>
                                 <Select value={filters.type} onValueChange={(val) => handleFilterChange("type", val)}>
@@ -172,6 +203,7 @@ const Properties = () => {
                                     </SelectContent>
                                 </Select>
                             </div>
+
                             <DialogClose asChild>
                                 <Button onClick={applyFilters} className="col-span-2 w-full mt-2">
                                     Apply Filters
@@ -181,6 +213,7 @@ const Properties = () => {
                     </DialogContent>
                 </Dialog>
             </div>
+
 
             {/* 🖥️ Desktop Filters & Property List */}
             <section className="md:flex p-4 gap-x-6">
@@ -263,7 +296,7 @@ const Properties = () => {
                         <>
                             <div className="flex justify-between items-center">
                                 <h1 className="font-bold text-3xl ">Properties List</h1>
-                                <Badge className="text-xl">{propertyList.length}</Badge>
+                                <Badge className="text-xl">{filteredProperties.length}</Badge>
                             </div>
                             {paginatedProperties.map((property, index) => (
                                 <Link to={`/property/${property._id}`}>
